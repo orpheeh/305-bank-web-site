@@ -29,21 +29,16 @@
             <div class="row">
                 <div class="form-container">
 
-                    <h2>Authentication using user ID</h2>
-                    <div class="form-group" id="form">
-                        <label for="user_id">User ID</label>
-                        <input type="text" placeholder="Your user key" id="user_id">
-                    </div>
-                    <button id="submit_btn">Confirm</button>
+                    <h2>Authentication using QR Code</h2>
 
-                    <div id="message"></div>
-                    <div id="time"></div>
+
+                    <canvas id="qCanvas"></canvas>
 
                     <div class="authentication-container">
                         <p>Choose another authentication method</p>
 
                         <div class="row-flex">
-                            <a href="/qrcode">QR Auth</a>
+                            <a href="/auth">ID Auth</a>
                             <a href="/otp">OTP Auth</a>
                             <a href="/totp">TOTP Auth</a>
                         </div>
@@ -69,53 +64,17 @@
     </main>
 
     <script src="../lib/bsa/bsa_challenge.js"></script>
-
     <script>
         const bsa = new Guardian("4e0151ac0971459ebbcebb9be59eb3a5");
-
-        document.getElementById("submit_btn").addEventListener("click", (e) => {
-
-            document.getElementById("submit_btn").classList.add("hide");
-            const userKey = document.getElementById("user_id").value;
-            const form = document.getElementById("form");
-            const messagev = document.getElementById("form");
-            const timev = document.getElementById("time");
-
-            form.classList.add("hide");
-
-            bsa.setAuthMessage((message) => {
-                console.log('onMessage');
-                console.log('AuthStatus : ' + message);
-                messagev.innerHTML = "Auth Status: " + message;
-            });
-
-            bsa.setAuthTimer((time) => {
-                console.log('onTime');
-                console.log('time : ' + time);
-                timev.innerHTML = "Timer " + + time;
-            });
-
-            bsa.onCancel(userKey, (errorCode, errorMsg) => {
-                console.log('onError');
-                console.log('errorCode : ', errorCode);
-                console.log('errorCode : ', errorMsg);
-            });
-
-            bsa.requestAuthCallback(userKey, (result) => {
-                console.log('onSuccess');
-                messagev.innerHTML = "Success";
-                console.log('accessToken : ', result.accessToken);
-                console.log('refreshToken : ', result.refreshToken);
-                location.href = "/home";
-            }, (errorCode, errorMsg) => {
-                console.log('onError');
-                console.log('errorCode : ', errorCode);
-                console.log('errorCode : ', errorMsg);
-                e.target.classList.remove("hide");
-            });
-        })
-
-
+        bsa.requestQrCallback(qCanvas, (result) => {
+            console.log('onSuccess');
+            console.log('accessToken : ', result.accessToken);
+            console.log('refreshToken : ', result.refreshToken);
+        }, (errorCode, errorMsg) => {
+            console.log('onError');
+            console.log('errorCode : ', errorCode);
+            console.log('errorCode : ', errorMsg);
+        }); 
     </script>
 </body>
 
