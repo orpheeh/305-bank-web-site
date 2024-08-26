@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>305 Bank - Home</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+
+</head>
+
+<body>
+    <main>
+        <div class="main-wrapper">
+            <img src="../assets/LogoType__FR.png" alt="">
+
+            <div class="row">
+                <div class="welcome-container">
+                    <h1>Welcome</h1>
+                    <h3>Make all transaction you need and logout</h3>
+
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
+        <div class="main-wrapper dark-wrapper">
+            <div class="row">
+                <a href="#">Download App now</a>
+                <div class="welcome-container">
+                    <h1>Getting started</h1>
+                    <h3>Download 305 Bank App For Create your account</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./home.js" type="module"></script>
+    <script>
+        window.addEventListener("load", () => {
+            if (localStorage.getItem("bank-305-token") == null) {
+                location.href = "/auth";
+            }
+        })
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            localStorage.clear();
+            location.href = "/auth";
+        })
+    </script>
+</body>
+
+</html>

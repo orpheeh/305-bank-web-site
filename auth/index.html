@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>305 Bank - Authentification</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jockey+One&family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+</head>
+
+<body>
+
+    <main>
+        <div class="main-wrapper">
+            <img src="../assets/LogoType__FR.png" alt="">
+
+            <div class="row">
+                <div class="form-container">
+
+                    <h2>Authentication using user ID</h2>
+                    <div class="form-group" id="form">
+                        <label for="user_id">User ID</label>
+                        <input type="text" placeholder="Your user key" id="user_id">
+                    </div>
+                    <div class="auth-progress hide" id="progress">
+                        <i class="fa-solid fa-shield-halved fa-flip"></i>
+                        <p>Authentication in progress, check your mobile app...</p>
+                    </div>
+
+                    <button id="submit_btn">Confirm</button>
+                    <span id="wait" class="hide" style="color: gray;">Veuillez patientier...</span>
+                    <span class="error-message" id="error-1"></span>
+
+                    <div class="authentication-container">
+                        <p>Choose another authentication method</p>
+
+                        <div class="row-flex">
+                            <a href="#">QR Auth</a>
+                            <a href="#">OTP Auth</a>
+                            <a href="#">TOTP Auth</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="welcome-container">
+                    <h1>Welcome to the most secure Bank</h1>
+                    <h3>305 Bank uses Blockchain to provide digital vaults in which you can secure your mobile money
+                        funds</h3>
+                </div>
+            </div>
+        </div>
+        <div class="main-wrapper dark-wrapper">
+            <div class="row">
+                <a href="#">Download App now</a>
+                <div class="welcome-container">
+                    <h1>Getting started</h1>
+                    <h3>Download 305 Bank App For Create your account</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../lib/bsa/authenticationUserID.js" type="module"></script>
+    <script src="./auth.js" type="module"></script>
+</body>
+
+</html>
